@@ -17,8 +17,8 @@ public class Prenda {
         this.color = color;
     }
     //getters
-    public String getClave(){return clave;};
-    public String getNombre();{return nombre;}
+    public String getClave(){return clave;}
+    public String getNombre(){return nombre;}
     public int getCantidad() {return cantidad;}
     public String getDescripcion(){return descripcion;}
     public String getRutaImagen(){return rutaImagen;}
