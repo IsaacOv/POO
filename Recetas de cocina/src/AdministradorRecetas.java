@@ -53,6 +53,5 @@ public class AdministradorRecetas {
         for (int i = 0; i < opciones.size(); i++) {
             System.out.println((i + 1) + ". " + opciones.get(i).getNombre());
         }
-        System.out.println("¿Cuál de estas opciones prefieres preparar?");
     }
 }
