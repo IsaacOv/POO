@@ -1,61 +1,71 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        Almacen almacen = new Almacen();
+        // Crear el administrador y registrar recetas
+        AdministradorRecetas admin = new AdministradorRecetas();
 
-        Prenda playera = new Prenda("P001", "Playera básica", 10, "Playera de algodón",
-                "img/playera.jpg", "S,M,L", "Blanco");
-        Prenda jeans = new Prenda("J001", "Jeans slim", 5, "Mezclilla azul",
-                "img/jeans.jpg", "28,30,32", "Azul");
-        Prenda sudadera = new Prenda("S001", "Sudadera con capucha", 8, "Sudadera de felpa",
-                "img/sudadera.jpg", "M,L,XL", "Negro");
+        Receta huevos = new Receta(
+                "Huevos revueltos",
+                Arrays.asList("huevo", "sal", "aceite"),
+                "1. Bate los huevos con sal. 2. Calienta el aceite en un sartén. 3. Vierte los huevos y revuelve hasta que cuajen.",
+                "img/huevos.jpg",
+                Arrays.asList("sartén", "tenedor", "plato hondo"));
+        huevos.agregarAtributoExtra("tiempo", "10 minutos");
+        huevos.agregarAtributoExtra("dificultad", "Fácil");
 
-        almacen.agregarNuevaPrenda(playera);
-        almacen.agregarNuevaPrenda(jeans);
-        almacen.agregarNuevaPrenda(sudadera);
+        Receta quesadillas = new Receta(
+                "Quesadillas",
+                Arrays.asList("tortilla", "queso"),
+                "1. Calienta la tortilla en el comal. 2. Agrega el queso. 3. Dobla y cocina hasta que el queso se derrita.",
+                "img/quesadillas.jpg",
+                Arrays.asList("comal", "espátula"));
+        quesadillas.agregarAtributoExtra("tiempo", "15 minutos");
+        quesadillas.agregarAtributoExtra("dificultad", "Fácil");
 
-        System.out.println("=== Inventario inicial ===");
-        mostrarInventario(almacen);
+        Receta pasta = new Receta(
+                "Pasta al ajo",
+                Arrays.asList("pasta", "ajo", "aceite", "sal"),
+                "1. Hierve la pasta con sal. 2. Dora el ajo en aceite. 3. Mezcla la pasta con el ajo.",
+                "img/pasta.jpg",
+                Arrays.asList("olla", "sartén", "colador"));
+        pasta.agregarAtributoExtra("tiempo", "25 minutos");
+        pasta.agregarAtributoExtra("dificultad", "Media");
 
-        // 2. Registrar una venta (una playera y unos jeans)
-        List<Prenda> productosVendidos = new ArrayList<>();
-        productosVendidos.add(playera);
-        productosVendidos.add(jeans);
+        admin.agregarReceta(huevos);
+        admin.agregarReceta(quesadillas);
+        admin.agregarReceta(pasta);
 
-        // Prenda no tiene precio, así que el total se indica al crear la venta
-        Venta venta = new Venta("14:30", "27/09/2026", "Efectivo", productosVendidos, 650.00f);
+        // Buscar recetas con los ingredientes que tiene el usuario
+        //(el buscador ignora mayúsculas y espacios extra)
+        List<String> ingredientesUsuario = Arrays.asList("Huevo", " Sal ", "Aceite", "Tortilla", "Queso");
 
-        almacen.procesarVenta(venta);
+        System.out.println("Ingredientes disponibles: " + ingredientesUsuario);
+        System.out.println();
 
-        System.out.println("\n=== Venta realizada ===");
-        System.out.println("Fecha: " + venta.getFecha() + " " + venta.getHora());
-        System.out.println("Forma de pago: " + venta.getFormaPago());
-        System.out.println("Productos:");
-        for (Prenda p : venta.getProductosVendidos()) {
-            System.out.println(" - " + p.getNombre() + " (" + p.getColor() + ")");
+        List<Receta> sugeridas = admin.buscarPorIngredientes(ingredientesUsuario);
+        admin.mostrarOpciones(sugeridas);
+
+        //Mostrar el detalle de la primera receta sugerida
+        if (!sugeridas.isEmpty()) {
+            mostrarDetalle(sugeridas.get(0));
         }
-        System.out.println("Total pagado: $" + venta.getTotalPagado());
 
-        System.out.println("\n=== Inventario después de la venta ===");
-        mostrarInventario(almacen);
-
-        // 3. Devolución de los jeans
-        System.out.println("\n=== Devolución de J001 ===");
-        almacen.registrarDevolucion("J001");
-
-        System.out.println("\n=== Inventario final ===");
-        mostrarInventario(almacen);
+        //Caso sin resultados
+        System.out.println("\n--- Otra búsqueda ---");
+        List<Receta> sinResultados = admin.buscarPorIngredientes(Arrays.asList("agua"));
+        admin.mostrarOpciones(sinResultados);
     }
 
-    // Método auxiliar para imprimir el inventario
-    private static void mostrarInventario(Almacen almacen) {
-        for (Prenda p : almacen.getInventario()) {
-            System.out.println(p.getClave() + " | " + p.getNombre() + " | "
-                    + p.getColor() + " | Tallas: " + p.getTallas()
-                    + " | Stock: " + p.getCantidad());
-        }
+    // Imprime todos los datos de una receta
+    private static void mostrarDetalle(Receta receta) {
+        System.out.println("\n=== " + receta.getNombre() + " ===");
+        System.out.println("Ingredientes: " + receta.getIngredientes());
+        System.out.println("Utensilios: " + receta.getUtensiliosNecesarios());
+        System.out.println("Pasos: " + receta.getPasos());
+        System.out.println("Tiempo: " + receta.obtenerAtributoExtra("tiempo"));
+        System.out.println("Dificultad: " + receta.obtenerAtributoExtra("dificultad"));
     }
 }
