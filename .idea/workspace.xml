@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f97d94a6-f36c-43e2-a022-54ef1c7e7558" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recetas de cocina/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Recetas de cocina/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tienda de Ropa/POO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Tienda de Ropa/POO.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tienda de Ropa/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tienda de Ropa/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +37,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -50,7 +53,10 @@
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Java/Tienda de ropa/src/Main.java"
+    "onboarding.tips.debug.path": "C:/Java/Tienda de ropa/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">

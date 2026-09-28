@@ -20,7 +20,7 @@ public class Main {
         System.out.println("=== Inventario inicial ===");
         mostrarInventario(almacen);
 
-        //Registrar una venta (una playera y unos jeans)
+        // 2. Registrar una venta (una playera y unos jeans)
         List<Prenda> productosVendidos = new ArrayList<>();
         productosVendidos.add(playera);
         productosVendidos.add(jeans);
